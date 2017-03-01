@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sockets?</title>
+		<script type="text/javascript" src="jquery/dist/jquery.js"></script>
+		<script src="socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				console.log("jQuery?")
+
+				// function get_counter(){
+				// 	$.ajax({
+				// 		url: "/current_counter",
+				// 		method: "GET",
+				// 		success: function(data){
+				// 			$("#counter").text(data.counter)
+				// 		}
+				// 	})
+				// }
+
+				$("button").click(function(){
+					socket.emit("plus_one")
+				})
+
+				// get_counter()
+
+				var socket = io.connect()
+
+				socket.on("update_count", function(data){
+					$("#counter").text(data)
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<h1>Sockets?</h1>
+		<h3>Counter</h3>
+		<div id="counter"></div>
+		<button>+1</button>
+	</body>
+</html>
